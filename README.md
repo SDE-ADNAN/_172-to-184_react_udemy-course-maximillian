@@ -41,3 +41,56 @@ Loading this page (and hence accessing this backend) might fail - if that is the
 just explained about swapi.dev
 
 ---
+
+## -- Video 176 : Sending a GET Request
+
+- we can use axios or fetch to send http requests here we will use fetch, axios just makes it easier and more readable and is a third party library and fetch is a native browser api and axios gives us all errors which are more readable and fetch gives us only network errors
+
+- got to https://axios-http.com/docs/intro to know more on axios
+
+- ## Code
+
+```JSX
+import React from "react";
+
+import MoviesList from "./components/MoviesList";
+import "./App.css";
+
+function App() {
+  const [movies, setMovies] = React.useState([]);
+
+  function fetchMoviesHandler() {
+    // default fetch method is GET
+    fetch("https://swapi.dev/api/films/")
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        const transformedMovies = data.results.map((movieData) => {
+          return {
+            // we are transforming the data as per our need
+            id: movieData.episode_id,
+            title: movieData.title,
+            openingText: movieData.opening_crawl,
+            releaseDate: movieData.release_date,
+          };
+        });
+        setMovies(transformedMovies);
+      });
+  }
+  return (
+    <React.Fragment>
+      <section>
+        <button onClick={fetchMoviesHandler}>Fetch Movies</button>
+      </section>
+      <section>
+        <MoviesList movies={movies} />
+      </section>
+    </React.Fragment>
+  );
+}
+
+export default App;
+```
+
+---
