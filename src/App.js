@@ -1,22 +1,22 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 import MoviesList from "./components/MoviesList";
+import AddMovie from "./components/AddMovie";
 import "./App.css";
 
 function App() {
-  const [movies, setMovies] = React.useState([]);
-  const [isLoading, setIsLoading] = React.useState(false);
-  const [error, setError] = React.useState(null);
+  const [movies, setMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const fetchMoviesHandler = useCallback(async () => {
     setIsLoading(true);
     setError(null);
-    // default fetch method is GET
-
     try {
-      const response = await fetch("https://swapi.dev/api/films/");
-      // we must check if the response is ok before we parse it or it will throw an error from that block
-      // instead of our thrown error.
+      // here we must add /movies.json to the end of the url because we are using firebase database and it requires it to make a json file in db
+      const response = await fetch(
+        "https://react-api-for-post-request-default-rtdb.firebaseio.com/movies.json"
+      );
       if (!response.ok) {
         throw new Error("Something went wrong!");
       }
@@ -42,24 +42,29 @@ function App() {
     fetchMoviesHandler();
   }, [fetchMoviesHandler]);
 
+  function addMovieHandler(movie) {
+    console.log(movie);
+  }
+
   let content = <p>Found no movies.</p>;
 
-  // if movies is not empty then we will show the movies
   if (movies.length > 0) {
     content = <MoviesList movies={movies} />;
   }
 
-  // if isLoading is true then we will show a loading... text
+  if (error) {
+    content = <p>{error}</p>;
+  }
+
   if (isLoading) {
     content = <p>Loading...</p>;
   }
 
-  if (error && !isLoading) {
-    content = <p>{error}</p>;
-  }
-
   return (
     <React.Fragment>
+      <section>
+        <AddMovie onAddMovie={addMovieHandler} />
+      </section>
       <section>
         <button onClick={fetchMoviesHandler}>Fetch Movies</button>
       </section>
