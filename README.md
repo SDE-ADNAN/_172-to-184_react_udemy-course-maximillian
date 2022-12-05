@@ -21,3 +21,17 @@ What we will learn in this module:
 - the browser is not a secure environment to talk to a database as anyone can see the requests
 - database credentials may be exposed as whole js code is visible to each user of a website
 - you must have a backend to talk to the database using apis and http requests from the browser it could be any backend language like php, python, nodejs, java, etc
+
+---
+
+## -- Video 174 : Using the Star Wars API
+
+MUST READ:
+
+In the next lecture, you will be introduced to our demo backend that will be used in this course section: The Star Wars API.
+
+I will use this page: https://swapi.dev/
+
+Loading this page (and hence accessing this backend) might fail - if that is the case for you, you can use this alternative: https://swapi.py4e.com/
+
+---
