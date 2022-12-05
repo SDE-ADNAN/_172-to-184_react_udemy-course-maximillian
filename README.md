@@ -533,3 +533,11 @@ function App() {
 
 export default App;
 ```
+
+---
+
+## -- Video 183 : Summary
+
+- we learned how to make post requests to a database
+- we learned how to use firebase to make a real time database
+- we learned how to use firebase to make post requests to a database
