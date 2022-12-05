@@ -14,4 +14,10 @@ What we will learn in this module:
 
 ---
 
-## -- Video 173 : Sending Http Requests
+## -- Video 173 : How to (NOT) connect to a database
+
+- browser side apps dont directly talk to a database
+- it is very bad practice to connect to a database from the browser directly
+- the browser is not a secure environment to talk to a database as anyone can see the requests
+- database credentials may be exposed as whole js code is visible to each user of a website
+- you must have a backend to talk to the database using apis and http requests from the browser it could be any backend language like php, python, nodejs, java, etc
