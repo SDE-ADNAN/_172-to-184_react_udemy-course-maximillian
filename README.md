@@ -94,3 +94,28 @@ export default App;
 ```
 
 ---
+
+## -- Video 177 : Using Async/Await
+
+- we can use async await instead of .then() to handle promises
+- async await is a more readable and cleaner way to handle promises in fetch calls
+- ## Code async await form of the above fetchMoviesHandler
+
+```JSX
+
+  async function fetchMoviesHandler() {
+    // default fetch method is GET
+    const response = await fetch("https://swapi.dev/api/films/");
+    const data = await response.json();
+    const transformedMovies = data.results.map((movieData) => {
+      return {
+        id: movieData.episode_id,
+        title: movieData.title,
+        openingText: movieData.opening_crawl,
+        releaseDate: movieData.release_date,
+      };
+    });
+    setMovies(transformedMovies);
+  }
+
+```
